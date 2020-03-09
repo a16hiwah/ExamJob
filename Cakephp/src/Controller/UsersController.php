@@ -106,13 +106,13 @@ class UsersController extends AppController
 
      // Login
      public function login(){
-        /*if($this->request->is('post')){
+        if($this->request->is('post')){   //validation, inloggningskontroll kollar användaren har rätt login
             $user = $this->Auth->identify();
             if($user){
                 $this->Auth->setUser($user);
                 return $this->redirect(['controller' => 'posts']);
             }
             // Bad Login
-            $this->Flash->error('Incorrect Login');*/
+            $this->Flash->error('Incorrect Login');
         }
 }
