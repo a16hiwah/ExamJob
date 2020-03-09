@@ -42,9 +42,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right"> <!-- skapar logga ut knapp-->
-            <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
-            <!-- skapar registering knapp-->
-            <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']); ?></li>
+            <?php if($loggedIn) : ?>
+                    <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
+                <?php else : ?>
+                    <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']); ?></li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
