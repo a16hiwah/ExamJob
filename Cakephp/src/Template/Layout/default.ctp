@@ -43,6 +43,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="top-bar-section">
             <ul class="right"> <!-- skapar logga ut knapp-->
             <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
+            <!-- skapar registering knapp-->
+            <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']); ?></li>
             </ul>
         </div>
     </nav>
