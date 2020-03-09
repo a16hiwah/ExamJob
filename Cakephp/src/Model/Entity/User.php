@@ -45,4 +45,11 @@ class User extends Entity
     protected $_hidden = [
         'password',
     ];
+
+    /**
+     * protected function setPassword  sparas password på säker sätt hash!
+     */
+    protected function _setPassword($password){
+        return (new DefaultPasswordHasher)->hash($password);
+    }
 }
