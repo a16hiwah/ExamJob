@@ -45,7 +45,7 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
+        $this->loadComponent('Auth', [ // validation ifall användaren har rätt login
             'authenticate' => [
                 'Form' => [
                     'fields' => [
