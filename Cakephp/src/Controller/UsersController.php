@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -138,7 +139,7 @@ class UsersController extends AppController
     $this->set(compact('user'));
     $this->set('_serialzie', ['user']);
 }
-
+// function beforeFilter hjälper för att gäster registerar sig
 public function beforeFilter(Event $event){
     $this->Auth->allow(['register']);
 }
