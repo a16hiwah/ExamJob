@@ -104,7 +104,7 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-     // Login
+     // Login funktion
      //validation, inloggningskontroll kollar användaren har rätt login
      public function login(){
         if($this->request->is('post')){   
@@ -113,8 +113,14 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 return $this->redirect(['controller' => 'posts']);
             }
-            // Bad Login
+            // fel Login meddelande
             $this->Flash->error('Incorrect Login');
         }
     }
+
+     // Logout funktion
+     public function logout(){
+        $this->Flash->success('You are logged out');
+        return $this->redirect($this->Auth->logout());
+   }
 }
