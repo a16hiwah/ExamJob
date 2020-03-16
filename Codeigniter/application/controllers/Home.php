@@ -6,10 +6,15 @@ public function index ()
         $this->load->view('login');
         
     }
-    public function hiwa ()
+    public function posts ()
 	{
-        //$this->load->view('welcome_message');
-        echo "this is my Home hiwa";
+        $this->load->view('posts');
+       
+    }
+    public function postadd ()
+	{
+        $this->load->view('postadd');
+       
     }
 }  
 ?>
