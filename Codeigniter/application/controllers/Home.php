@@ -16,5 +16,10 @@ public function index ()
         $this->load->view('postadd');
        
     }
+    public function register ()
+	{
+        $this->load->view('register');
+       
+    }
 }  
 ?>
