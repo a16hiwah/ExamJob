@@ -21,5 +21,15 @@ public function index ()
         $this->load->view('register');
        
     }
+    public function users ()
+	{
+        $this->load->view('users');
+       
+    }
+    public function usersadd ()
+	{
+        $this->load->view('usersadd');
+       
+    }
 }  
 ?>
