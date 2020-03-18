@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Users </title>
+    <title> användare </title>
     <link rel="stylesheet" href="/ExamJobb/Codeigniter/css/base.css" />
     <link rel="stylesheet" href="/ExamJobb/Codeigniter/css/style.css" />
 </head>
@@ -13,13 +13,13 @@
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href="">Users</a></h1>
+                <h1><a href="">användare</a></h1>
             </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
                 <!-- skapar logga ut knapp-->
-                <li><a href="###">Logout</a></li>
+                <li><a href="###">Logga ut</a></li>
             </ul>
         </div>
     </nav>
@@ -27,22 +27,22 @@
         <nav class="large-3 medium-4 columns" id="actions-sidebar">
             <ul class="side-nav">
                 <li class="heading">Actions</li>
-                <li><a href="##">New User</a></li>
-                <li><a href="##">List Posts</a></li>
-                <li><a href="##">New Post</a></li>
+                <li><a href="##">Ny användare</a></li>
+                <li><a href="##">Lista inlägg</a></li>
+                <li><a href="##">Nytt inlägg</a></li>
             </ul>
         </nav>
         <div class="users index large-9 medium-8 columns content">
-            <h3>Users</h3>
+            <h3>användare</h3>
             <table cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
                         <th scope="col"><a href="#">Id</a></th>
-                        <th scope="col"><a href="#">Name</a></th>
-                        <th scope="col"><a href="#">Email</a></th>
-                        <th scope="col"><a href="#">Password</a></th>
-                        <th scope="col"><a href="#">Created</a></th>
-                        <th scope="col"><a href="#">Modified</a></th>
+                        <th scope="col"><a href="#">namn</a></th>
+                        <th scope="col"><a href="#">e-post <address></address></a></th>
+                        <th scope="col"><a href="#">Lösenord</a></th>
+                        <th scope="col"><a href="#">Skapad</a></th>
+                        <th scope="col"><a href="#">Ändrad</a></th>
                         <th scope="col" class="actions">Actions</th>
                     </tr>
                 </thead>
@@ -87,10 +87,10 @@
             </table>
             <div class="paginator">
                 <ul class="pagination">
-                    <li class="prev disabled"><a href="" onclick="return false;">&lt; previous</a></li>
-                    <li class="next disabled"><a href="" onclick="return false;">next &gt;</a></li>
+                    <li class="prev disabled"><a href="" onclick="return false;">&lt; föregående</a></li>
+                    <li class="next disabled"><a href="" onclick="return false;">Nästa &gt;</a></li>
                 </ul>
-                <p>Page 1 of 1, showing 3 record(s) out of 3 total</p>
+                <p>Sida 1 av 1, visar 3 post (er) av totalt 3</p>
             </div>
         </div>
     </div>
