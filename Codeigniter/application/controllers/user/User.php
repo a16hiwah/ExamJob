@@ -3,6 +3,25 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller {
+        // check if somebody already in log
+	public function __construct() {
+        parent::__construct();
+        
+        //load the required libraries and helpers for login
+        $this->load->helper('url');
+        $this->load->library(['form_validation','session']);
+        $this->load->database();
+        
+        //load the Login Model
+        $this->load->model('LoginModel', 'login');
+        //load the Register Model
+        $this->load->model('RegisterModel', 'register');
+        //load the User Model
+        $this->load->model('user/UserModel', 'user');
+        //load the Post Model
+        $this->load->model('post/PostModel', 'post');
+    }
+    
     public function index($offset = 0) {
         
         
