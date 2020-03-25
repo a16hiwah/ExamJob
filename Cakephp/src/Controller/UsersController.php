@@ -1,11 +1,9 @@
 <?php
 namespace App\Controller;
+$t_start = microtime(true);
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-// Place at the top of index.php (first file to load)
-$t_start = microtime(true);
-
 /**
  * Users Controller
  *
@@ -141,24 +139,12 @@ class UsersController extends AppController
     $this->set(compact('user'));
     $this->set('_serialzie', ['user']);
 }
-/**  function beforeFilter hjälper för att gäster registerar sig*/
-public function beforeFilter(Event $event){
-    $this->Auth->allow(['register']);
-}
+
 }
 
-// Place all the code below at the bottom of index.php (first file to load)
-// except the PHP closing tag
 $t_stop = microtime(true);
-
-// Calculate execution time in milliseconds (round to 3 decimals)
 $exec_time = round((($t_stop - $t_start) * 1000), 3);
-
-// Path to csv file where the result should be saved (choose one)
 $fileLocation = getenv('DOCUMENT_ROOT') . '/logs/codeigniter_measurements.csv';
-// $fileLocation = getenv('DOCUMENT_ROOT') . '/logs/cakephp_measurements.csv';
-
-// Save the result
 $handle = fopen($fileLocation, 'a');
 fputcsv($handle, [$exec_time]);
 fclose($handle);
