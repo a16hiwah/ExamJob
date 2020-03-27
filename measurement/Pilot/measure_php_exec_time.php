@@ -1,5 +1,4 @@
 <!-- This is the code used to measure the execution time in CodeIgniter and CakePHP -->
-
 <?php
 // Place at the top of index.php (first file to load)
 $t_start = microtime(true);
