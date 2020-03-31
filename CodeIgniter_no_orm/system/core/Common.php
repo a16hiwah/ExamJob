@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,8 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @license	https://opensource.org/licenses/MIT	MIT License
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
@@ -81,8 +81,7 @@ if ( ! function_exists('is_really_writable'))
 	 * Tests for file writability
 	 *
 	 * is_writable() returns TRUE on Windows servers when you really can't write to
-	 * the file, based on the read-only attribute. is_writable() is also unreliable
-	 * on Unix servers if safe_mode is on.
+	 * the file, based on the read-only attribute.
 	 *
 	 * @link	https://bugs.php.net/bug.php?id=54709
 	 * @param	string
@@ -90,8 +89,8 @@ if ( ! function_exists('is_really_writable'))
 	 */
 	function is_really_writable($file)
 	{
-		// If we're on a Unix server with safe_mode off we call is_writable
-		if (DIRECTORY_SEPARATOR === '/' && (is_php('5.4') OR ! ini_get('safe_mode')))
+		// If we're on a UNIX-like server, just is_writable()
+		if (DIRECTORY_SEPARATOR === '/')
 		{
 			return is_writable($file);
 		}
