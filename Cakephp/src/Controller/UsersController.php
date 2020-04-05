@@ -1,7 +1,5 @@
 <?php
 namespace App\Controller;
-$t_start = microtime(true);
-
 use App\Controller\AppController;
 use Cake\Event\Event;
 /**
@@ -141,10 +139,3 @@ class UsersController extends AppController
 }
 
 }
-
-$t_stop = microtime(true);
-$exec_time = round((($t_stop - $t_start) * 1000), 3);
-$fileLocation = getenv('DOCUMENT_ROOT') . '/logs/cakephp_login_measurements.csv';
-$handle = fopen($fileLocation, 'a');
-fputcsv($handle, [$exec_time]);
-fclose($handle);
