@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Posts Controller
  *
@@ -17,14 +17,14 @@ class PostsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    // $conn = ConnectionManager::get('default');
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users'],
-        ];
-        $posts = $this->paginate($this->Posts);
+        $conn = ConnectionManager::get('default');
+        $posts = $conn->execute('SELECT * FROM posts')->fetchAll('assoc');
+        
 
-        $this->set(compact('posts'));
+        $this->set('posts',$posts);
     }
 
     /**
@@ -36,11 +36,10 @@ class PostsController extends AppController
      */
     public function view($id = null)
     {
-        $post = $this->Posts->get($id, [
-            'contain' => ['Users'],
-        ]);
-
-        $this->set('post', $post);
+        $conn = ConnectionManager::get('default');
+        $post = $conn->execute("SELECT a.*, b.name FROM posts a JOIN users b ON a.user_id = b.id WHERE a.id = $id ")->fetchAll('assoc');
+        
+        $this->set('post', $post[0]);
     }
 
     /**
@@ -51,15 +50,37 @@ class PostsController extends AppController
     public function add()
     {
         $post = $this->Posts->newEntity();
-        if ($this->request->is('post')) {
-            $post = $this->Posts->patchEntity($post, $this->request->getData());
-            if ($this->Posts->save($post)) {
-                $this->Flash->success(__('The post has been saved.'));
+        
+        if($this->request->getData() == TRUE){
+            
+            $postd = $this->request->getData();
 
+            $title = $postd['title'];
+            $body = $postd['body'];
+            $uid = $postd['user_id'];
+            $modified = date('Y-m-d H:i:s');
+            $created =  date('Y-m-d H:i:s');
+        
+            $conn = ConnectionManager::get('default');
+
+            if($title != ""){
+                
+                $conn->insert('posts', [
+                'title' => $title,
+                'body' => $body,
+                'user_id' => $uid,
+                'modified' => $modified,
+                'created' => $created
+                 ], ['created' => 'datetime']);
+                //$conn->insert("INSERT INTO posts VALUES('',$title,$body,$uid,$modified,$created)");
+
+                $this->Flash->success(__('The post has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The post could not be saved. Please, try again.'));
-        }
+            else{
+                $this->Flash->error(__('The post could not be saved. Please, try again.'));
+            }
+        }        
         $users = $this->Posts->Users->find('list', ['limit' => 200]);
         $this->set(compact('post', 'users'));
     }
@@ -76,14 +97,34 @@ class PostsController extends AppController
         $post = $this->Posts->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $post = $this->Posts->patchEntity($post, $this->request->getData());
-            if ($this->Posts->save($post)) {
-                $this->Flash->success(__('The post has been saved.'));
+        
+        if($this->request->getData() == TRUE){
+            
+            $postd = $this->request->getData();
 
+            $title = $postd['title'];
+            $body = $postd['body'];
+            $uid = $postd['user_id'];
+            $modified = date('Y-m-d H:i:s');
+            // $created =  date('Y-m-d H:i:s');
+        
+            $conn = ConnectionManager::get('default');
+
+            if($title != ""){
+                
+                $conn->update('posts', [
+                'title' => $title,
+                'body' => $body,
+                'user_id' => $uid,
+                'modified' => $modified
+                 ], ['id' => $id]);
+
+                $this->Flash->success(__('The post has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The post could not be saved. Please, try again.'));
+            else{
+                $this->Flash->error(__('The post could not be saved. Please, try again.'));
+            }
         }
         $users = $this->Posts->Users->find('list', ['limit' => 200]);
         $this->set(compact('post', 'users'));
@@ -100,7 +141,8 @@ class PostsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $post = $this->Posts->get($id);
-        if ($this->Posts->delete($post)) {
+        $conn = ConnectionManager::get('default');
+        if ($conn->delete('posts', ['id' => $id])) {
             $this->Flash->success(__('The post has been deleted.'));
         } else {
             $this->Flash->error(__('The post could not be deleted. Please, try again.'));
