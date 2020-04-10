@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://localhost/hiwa/hiwacode/';
-$config['base_url'] = 'http://localhost/ExamJobb/codeigniter/';
+$config['base_url'] = 'http://localhost/codeigniter/';
 
 
 /*
@@ -104,7 +104,8 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+//$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
