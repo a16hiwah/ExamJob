@@ -1,13 +1,8 @@
 <?php
-// Place at the top of index.php (first file to load)
-$t_start = microtime(true);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-// Place at the top of index.php (first file to load)
-$t_start = microtime(true);
 
 class Login extends CI_Controller {
-    
 
     public function __construct() {
         parent::__construct();
@@ -62,22 +57,5 @@ class Login extends CI_Controller {
         $this->session->unset_userdata('logged_in');
         redirect(base_url().'login');
     }
-    
 
 }
-// Place all the code below at the bottom of index.php (first file to load)
-// except the PHP closing tag
-$t_stop = microtime(true);
-
-// Calculate execution time in milliseconds (round to 3 decimals)
-$exec_time = round((($t_stop - $t_start) * 1000), 3);
-
-// Display the result on the rendered web page to make it possible to get it
-// with JavaScript
-echo '<div id="exec-time">'.$exec_time.'</div>';
-$t_stop = microtime(true);
-$exec_time = round((($t_stop - $t_start) * 1000), 3);
-$fileLocation = getenv('DOCUMENT_ROOT') . '/logs/codeigniter_log in_measurements.csv';
-$handle = fopen($fileLocation, 'a');
-fputcsv($handle, [$exec_time]);
-fclose($handle);

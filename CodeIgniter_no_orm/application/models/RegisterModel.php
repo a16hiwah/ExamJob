@@ -3,8 +3,7 @@
 class RegisterModel extends CI_Model{
     public function add_user($data){
         //get the data from controller and insert into the table 'users'
-        //return $this->db->insert('users', $data); //codeiginter way to insert data into database
-		$name = $data['name'];
+        $name = $data['name'];
         $email = $data['email'];
         $password = $data['password'];
         $created = $data['created'];

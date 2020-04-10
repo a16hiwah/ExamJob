@@ -30,7 +30,15 @@ class PostModel extends CI_Model{
         return $query;
     }
 
-    public function updatepost($post, $id){
+    public function get_single_post($id){
+			
+            $sql = "SELECT a.*, b.name FROM posts a join users b ON b.id = a.user_id WHERE a.id = $id";
+            //get the value from tables using join query and return to controller
+            $query = $this->db->query($sql);
+            return $query->row_array();
+	}
+
+	public function updatepost($post, $id){
 		    //search the id in posts table which sends from controller and update the rows with new post values
 			$title = $post['title'];
             $body = $post['body'];

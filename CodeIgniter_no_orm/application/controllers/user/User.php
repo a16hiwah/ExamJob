@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller {
-        // check if somebody already in log
+
 	public function __construct() {
         parent::__construct();
         
@@ -115,7 +115,7 @@ class User extends MY_Controller {
         if ($this->form_validation->run() == FALSE) {
             //set the validation errors in flashdata (one time session)
             $this->session->set_flashdata('errors', validation_errors());
-            redirect(base_url() . 'user/user/ adduser');
+            redirect(base_url() . 'user/user/newuser');
         } else {
             //if not get the input values
             $name = $this->input->post('name');

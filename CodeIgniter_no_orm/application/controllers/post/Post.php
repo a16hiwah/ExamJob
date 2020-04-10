@@ -1,6 +1,4 @@
 <?php
-// Place at the top of index.php (first file to load)
-$t_start = microtime(true);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -188,19 +186,3 @@ class Post extends MY_Controller {
 
 
 }
-// Place all the code below at the bottom of index.php (first file to load)
-// except the PHP closing tag
-$t_stop = microtime(true);
-
-// Calculate execution time in milliseconds (round to 3 decimals)
-$exec_time = round((($t_stop - $t_start) * 1000), 5);
-
-// Display the result on the rendered web page to make it possible to get it
-// with JavaScript
-echo '<div id="exec-time">'.$exec_time.'</div>';
-$t_stop = microtime(true);
-$exec_time = round((($t_stop - $t_start) * 1000), 5);
-$fileLocation = getenv('DOCUMENT_ROOT') . '/logs/codeigniterp_logins_measurements.csv';
-$handle = fopen($fileLocation, 'a');
-fputcsv($handle, [$exec_time]);
-fclose($handle);
